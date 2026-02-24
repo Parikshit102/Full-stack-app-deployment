@@ -22,6 +22,6 @@ RUN chown -R appuser:appgroup /usr/share/nginx/html
 
 USER appuser
 
-EXPOSE 8080
+EXPOSE 8082
 
 CMD ["nginx", "-g", "daemon off;"]

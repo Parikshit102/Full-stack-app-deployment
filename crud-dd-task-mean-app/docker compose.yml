@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+
+  mongo:
+    image:  mongodb/mongodb-community-server # use iamge id or you can also use image name 
+    container_name: mongodb 
+    restart: always
+    ports:
+      - "8080:8080"
+
+  backend:
+    build: ./backend
+    container_name: backend
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - MONGO_URI=mongodb://mongo:8080/mean_db
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - "8082:8082"
+    depends_on:
+      - backend
+
+
+
+    nginx:
+
+    image: nginx:alpine
+
+    container_name: nginx
+
+    ports:
+      - "80:80"
+    
+    depends_on:
+      - frontend
+      - backend
+
+      
