@@ -4,28 +4,28 @@ services:
 
   mongo:
     image:  mongodb/mongodb-community-server # use iamge id or you can also use image name 
-    container_name: mongodb 
+    container_name: mongo 
     restart: always
     ports:
-      - "8080:8080"
+      - "270017:27017"
 
   backend:
     build: ./backend
-    container_name: backend
+    container_name: my-backend
     restart: always
     ports:
       - "8081:8081"
     environment:
-      - MONGO_URI=mongodb://mongo:8080/mean_db
+      - MONGO_URI=mongodb://mongo:27017/mean_db
     depends_on:
       - mongo
 
   frontend:
     build: ./frontend
-    container_name: frontend
+    container_name: my-frontenddd
     restart: always
     ports:
-      - "8082:8082"
+      - "5000:80"
     depends_on:
       - backend
 
@@ -33,12 +33,12 @@ services:
 
     nginx:
 
-    image: nginx:alpine
+    image: 6eab9bd31d06 # use image id or you can also use image name
 
-    container_name: nginx
+    container_name: my-nginxtttt
 
     ports:
-      - "80:80"
+      - "8080:80"
     
     depends_on:
       - frontend
