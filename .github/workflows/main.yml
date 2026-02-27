@@ -35,3 +35,11 @@ jobs:
           context: ./crud-dd-task-mean-app/frontend
           push: true
           tags: subhamsharma2/frontend:latest
+
+      - name: Build and push nginx server
+        uses: docker/build-push-action@v5
+        with:
+         context: ./nginx
+         push: true
+         tags: subhamsharma2/backend:latest
+        
